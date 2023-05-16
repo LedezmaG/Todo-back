@@ -31,7 +31,6 @@ router.get(
 router.post(
   "/",
   [
-    check("id_user", "Invalid value").isInt(),
     check("title", "Invalid value").isString().isLength({ max: 45 }),
     check("description", "Invalid value").isString().isLength({ max: 150 }),
     check("status", "Invalid value").isString().isIn(['open', 'waiting', 'done']),
@@ -48,7 +47,6 @@ router.put(
   "/",
   [
     check("id", "Invalid value").isInt(),
-    check("id_user", "Invalid value").isInt(),
     check("title", "Invalid value").isString().isLength({ max: 45 }),
     check("description", "Invalid value").isString().isLength({ max: 150 }),
     check("status", "Invalid value").isString().isIn(['open', 'waiting', 'done']),
