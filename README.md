@@ -98,7 +98,7 @@ CREATE TABLE `tasks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `tasks` (`id`, `id_user`, `title`, `description`, `status`, `deadline`, `comment`, `responsible`, `tags`, `created`, `updated`, `active`) VALUES
-(1, 1, 'Example', 'This is another example >:v', 'open', '2023-05-25', 'This is a very important task ', 'David', 'Urgent', '2023-05-16 19:02:55', '2023-05-17 01:03:34', 1),
-(2, 1, 'Example 2', 'This is another example', 'open', '2023-05-26', 'This is a very important task ', 'Israel', 'Urgent', '2023-05-16 19:03:01', '2023-05-16 19:03:01', 1),
-(3, 1, 'Example 3', 'This is another example', 'open', '2023-05-26', 'This is a very important task ', 'Israel', 'Urgent', '2023-05-16 19:03:05', '2023-05-17 01:03:51', 0);
+(1, 1, 'Example', 'This is another example', 'pending', '2023-05-25', 'This is a very important task ', 'David', 'Urgent', '2023-05-16 19:02:55', '2023-05-17 01:03:34', 1),
+(2, 1, 'Example 2', 'This is another example', 'pending', '2023-05-26', 'This is a very important task ', 'Israel', 'Urgent', '2023-05-16 19:03:01', '2023-05-16 19:03:01', 1),
+(3, 1, 'Example 3', 'This is another example', 'pending', '2023-05-26', 'This is a very important task ', 'Israel', 'Urgent', '2023-05-16 19:03:05', '2023-05-17 01:03:51', 0);
 ```
