@@ -68,6 +68,7 @@ const Create = async (req, res = response) => {
 const Update = async (req, res = response) => {
     try {
         const { id, id_role, name, username } = req.body;
+        console.log("🚀 ~ file: UsersController.js:71 ~ Update ~ req.body:", req.body)
         const timestamp = new Date().toISOString();
         const sql = `UPDATE users SET ?, ?, ?, ? WHERE id = ${id} AND active = 1;`;
         await query( 
@@ -81,6 +82,7 @@ const Update = async (req, res = response) => {
         )
         return res.status(200).json({ status: true });
     } catch (error) {
+        console.log("🚀 ~ file: UsersController.js:84 ~ Update ~ error:", error)
         return res.status(400).json({ status: false, messaje: error.message });
     }
 };
