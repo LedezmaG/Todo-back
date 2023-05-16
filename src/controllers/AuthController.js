@@ -16,6 +16,7 @@ const GenerateToken = async (req, res = response) => {
                 id: resp.id,
                 name: resp.name,
                 username: resp.username,
+                role: resp.id_role,
             },
             `${process.env.SECRET_KEY}`,
             { expiresIn: "1d" }

@@ -3,9 +3,11 @@ const { check } = require("express-validator");
 const { JwtVerify } = require("../helpers/jwtVerify");
 const { fileValidator } = require("../helpers/fileValidator");
 const { GetAll, GetById, Create, Update, Delete } = require("../controllers/UsersController.js");
+const { adminValidator } = require("../helpers/adminValidator");
 
 const router = Router();
 router.use(JwtVerify);
+router.use(adminValidator);
 
 router.get(
   "/",
