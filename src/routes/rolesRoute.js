@@ -7,12 +7,23 @@ const { GetAll, GetById, Create, Update, Delete } = require("../controllers/Role
 const router = Router();
 router.use(JwtVerify);
 
-router.get("/", GetAll);
+router.get(
+  "/",
+  [
+    check("limit", "Invalid value").optional().isInt(),
+    check("offset", "Invalid value").optional().isInt(), 
+    fileValidator
+  ],
+  GetAll
+);
 
 router.get(
   "/:id",
   [
-    check("id", "id no es valido").isInt(), fileValidator
+    check("id", "id no es valido").isInt(), 
+    check("limit", "Invalid value").optional().isInt(),
+    check("offset", "Invalid value").optional().isInt(), 
+    fileValidator
   ],
   GetById
 );

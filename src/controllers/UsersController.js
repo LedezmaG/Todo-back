@@ -4,14 +4,21 @@ const query = util.promisify(connection.query).bind(connection)
 
 const GetAll = async (req, res = response) => {
     try {
-        const sql = 'SELECT * FROM users WHERE active = 1';
+        const { limit = 20, offset = 0 } = req.query;
+        const sql = `SELECT * FROM users WHERE active = 1 LIMIT ${limit} OFFSET ${offset}`;
         const resp = await query( sql )
-        if (!resp) {
+        const [respCount] = await query( 'SELECT count(*) AS count FROM users WHERE active = 1;' )
+        if (!resp || !respCount) {
             return res.status(204).json({ status: false, messaje: 'Data not found' });
         }
         return res.status(200).json({
             status: true,
-            response: resp
+            response: resp,
+            meta: {
+                count: respCount.count,
+                limit: parseInt(limit), 
+                offset: parseInt(offset)
+            }
         });
     } catch (error) {
         return res.status(400).json({ status: false, messaje: error.message });
@@ -22,7 +29,7 @@ const GetById = async (req, res = response) => {
     try {
         const { id } = req.params;
         const sql = `SELECT * FROM users WHERE id = ${id} AND active = 1`;
-        const resp = await query( sql )
+        const [resp] = await query( sql )
         if (!resp) {
             return res.status(204).json({ status: false, messaje: 'Data not found' });
         }
@@ -49,7 +56,9 @@ const Create = async (req, res = response) => {
         )
         return res.status(201).json({
             status: true,
-            response: resp,
+            results: {
+                id: resp.insertId
+            }
         });
     } catch (error) {
         return res.status(400).json({ status: false, messaje: error.message });
