@@ -33,7 +33,7 @@ router.post(
   [
     check("title", "Invalid value").isString().isLength({ max: 45 }),
     check("description", "Invalid value").isString().isLength({ max: 150 }),
-    check("status", "Invalid value").isString().isIn(['open', 'waiting', 'done']),
+    check("status", "Invalid value").isString().isIn(["pending", "completed"]),
     check("deadline", "Invalid value"),
     check("comment", "Invalid value").optional().isString().isLength({ max: 150 }),
     check("responsible", "Invalid value").optional().isString().isLength({ max: 45 }),
@@ -49,7 +49,7 @@ router.put(
     check("id", "Invalid value").isInt(),
     check("title", "Invalid value").isString().isLength({ max: 45 }),
     check("description", "Invalid value").isString().isLength({ max: 150 }),
-    check("status", "Invalid value").isString().isIn(['open', 'waiting', 'done']),
+    check("status", "Invalid value").isString().isIn(["pending", "completed"]),
     check("deadline", "Invalid value").isISO8601().toDate(),
     check("comment", "Invalid value").optional().isString().isLength({ max: 150 }),
     check("responsible", "Invalid value").optional().isString().isLength({ max: 45 }),
